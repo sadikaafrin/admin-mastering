@@ -1,7 +1,6 @@
 <!-- BACK-TO-TOP -->
 <a href="#top" id="back-to-top"><i class="fa fa-long-arrow-up"></i></a>
 
-
 <!-- JQUERY JS -->
 <script src="{{ asset('backend/plugins/jquery/jquery.min.js') }}"></script>
 
@@ -61,6 +60,9 @@
 {{-- toaster js --}}
 <script src="{{ asset('backend/js/toastr.min.js') }}"></script>
 
+
+<script src="{{ asset('backend/js/sweetalert2@11.js') }}"></script>
+
 <!-- DATA TABLE JS-->
 <script src="{{ asset('backend/plugins/datatable/js/jquery.dataTables.min.js') }}"></script>
 <script src="{{ asset('backend/plugins/datatable/js/dataTables.bootstrap5.js') }}"></script>
@@ -75,3 +77,116 @@
 <script src="{{ asset('backend/plugins/datatable/dataTables.responsive.min.js') }}"></script>
 <script src="{{ asset('backend/plugins/datatable/responsive.bootstrap5.min.js') }}"></script>
 <script src="{{ asset('backend/js/table-data.js') }}"></script>
+
+
+@stack('script')
+
+{{-- toastr start --}}
+<script>
+    $(document).ready(function() {
+        toastr.options.timeOut = 10000;
+        toastr.options.positionClass = 'toast-top-right';
+
+        @if (Session::has('t-success'))
+            toastr.options = {
+            'closeButton': true,
+            'debug': false,
+            'newestOnTop': true,
+            'progressBar': true,
+            'positionClass': 'toast-top-right',
+            'preventDuplicates': false,
+            'showDuration': '1000',
+            'hideDuration': '1000',
+            'timeOut': '5000',
+            'extendedTimeOut': '1000',
+            'showEasing': 'swing',
+            'hideEasing': 'linear',
+            'showMethod': 'fadeIn',
+            'hideMethod': 'fadeOut',
+        };
+        toastr.success("{{ session('t-success') }}");
+        @endif
+
+            @if (Session::has('t-error'))
+            toastr.options = {
+            'closeButton': true,
+            'debug': false,
+            'newestOnTop': true,
+            'progressBar': true,
+            'positionClass': 'toast-top-right',
+            'preventDuplicates': false,
+            'showDuration': '1000',
+            'hideDuration': '1000',
+            'timeOut': '5000',
+            'extendedTimeOut': '1000',
+            'showEasing': 'swing',
+            'hideEasing': 'linear',
+            'showMethod': 'fadeIn',
+            'hideMethod': 'fadeOut',
+        };
+        toastr.error("{{ session('t-error') }}");
+        @endif
+
+            @if (Session::has('t-info'))
+            toastr.options = {
+            'closeButton': true,
+            'debug': false,
+            'newestOnTop': true,
+            'progressBar': true,
+            'positionClass': 'toast-top-right',
+            'preventDuplicates': false,
+            'showDuration': '1000',
+            'hideDuration': '1000',
+            'timeOut': '5000',
+            'extendedTimeOut': '1000',
+            'showEasing': 'swing',
+            'hideEasing': 'linear',
+            'showMethod': 'fadeIn',
+            'hideMethod': 'fadeOut',
+        };
+        toastr.info("{{ session('t-info') }}");
+        @endif
+
+            @if (Session::has('t-warning'))
+            toastr.options = {
+            'closeButton': true,
+            'debug': false,
+            'newestOnTop': true,
+            'progressBar': true,
+            'positionClass': 'toast-top-right',
+            'preventDuplicates': false,
+            'showDuration': '1000',
+            'hideDuration': '1000',
+            'timeOut': '5000',
+            'extendedTimeOut': '1000',
+            'showEasing': 'swing',
+            'hideEasing': 'linear',
+            'showMethod': 'fadeIn',
+            'hideMethod': 'fadeOut',
+        };
+        toastr.warning("{{ session('t-warning') }}");
+        @endif
+    });
+</script>
+{{-- toastr end --}}
+
+
+{{-- dropify start --}}
+<script>
+    $(document).ready(function() {
+        $('.dropify').dropify();
+    });
+</script>
+{{-- dropify end --}}
+
+{{-- summernot start --}}
+<script>
+    $(document).ready(function() {
+        // Initialize Summernote
+        $('#summernote').summernote({
+            tabsize: 2,
+            height: 220,
+        });
+    });
+</script>
+{{-- summetnote end --}}

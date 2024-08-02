@@ -1,47 +1,55 @@
-<x-guest-layout>
-    <!-- Session Status -->
-    <x-auth-session-status class="mb-4" :status="session('status')" />
+@extends('auth.app')
 
-    <form method="POST" action="{{ route('login') }}">
-        @csrf
-
-        <!-- Email Address -->
-        <div>
-            <x-input-label for="email" :value="__('Email')" />
-            <x-text-input id="email" class="block mt-1 w-full" type="email" name="email" :value="old('email')" required autofocus autocomplete="username" />
-            <x-input-error :messages="$errors->get('email')" class="mt-2" />
+@section('content')
+<!-- PAGE -->
+<div class="page">
+    <div>
+        <!-- CONTAINER OPEN -->
+        <div class="col col-login mx-auto text-center">
+            <a href="index.html" class="text-center">
+                <img src="{{asset('backend/images/brand/logo.png')}}" class="header-brand-img" alt="">
+            </a>
         </div>
+        <div class="container-login100">
+            <div class="wrap-login100 p-0">
+                <div class="card-body">
+                    <form class="login100-form validate-form" method="post" action="{{route('login')}}" enctype="multipart/form-data">
+                        @csrf
+									<span class="login100-form-title">
+										Login
+									</span>
+                        <div class="wrap-input100 validate-input" data-bs-validate = "Valid email is required: ex@abc.xyz">
+                            <input class="input100" type="text" name="email" placeholder="Email">
+                            <span class="focus-input100"></span>
+                            <span class="symbol-input100">
+											<i class="zmdi zmdi-email" aria-hidden="true"></i>
+										</span>
+                        </div>
+                        <div class="wrap-input100 validate-input" data-bs-validate = "Password is required">
+                            <input class="input100" type="password" name="password" placeholder="Password">
+                            <span class="focus-input100"></span>
+                            <span class="symbol-input100">
+											<i class="zmdi zmdi-lock" aria-hidden="true"></i>
+										</span>
+                        </div>
+                        <div class="text-end pt-1">
+                            <p class="mb-0"><a href="{{route('password.request')}}" class="text-primary ms-1">Forgot Password?</a></p>
+                        </div>
+                        <div class="container-login100-form-btn">
+                            <button class="login100-form-btn btn-primary">
+                                Login
+                            </button>
+                        </div>
+                        <div class="text-center pt-3">
+                            <p class="text-dark mb-0">Not register?<a href="{{route('register')}}" class="text-primary ms-1">Create an Account</a></p>
+                        </div>
+                    </form>
+                </div>
 
-        <!-- Password -->
-        <div class="mt-4">
-            <x-input-label for="password" :value="__('Password')" />
-
-            <x-text-input id="password" class="block mt-1 w-full"
-                            type="password"
-                            name="password"
-                            required autocomplete="current-password" />
-
-            <x-input-error :messages="$errors->get('password')" class="mt-2" />
+            </div>
         </div>
-
-        <!-- Remember Me -->
-        <div class="block mt-4">
-            <label for="remember_me" class="inline-flex items-center">
-                <input id="remember_me" type="checkbox" class="rounded dark:bg-gray-900 border-gray-300 dark:border-gray-700 text-indigo-600 shadow-sm focus:ring-indigo-500 dark:focus:ring-indigo-600 dark:focus:ring-offset-gray-800" name="remember">
-                <span class="ms-2 text-sm text-gray-600 dark:text-gray-400">{{ __('Remember me') }}</span>
-            </label>
-        </div>
-
-        <div class="flex items-center justify-end mt-4">
-            @if (Route::has('password.request'))
-                <a class="underline text-sm text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-gray-100 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 dark:focus:ring-offset-gray-800" href="{{ route('password.request') }}">
-                    {{ __('Forgot your password?') }}
-                </a>
-            @endif
-
-            <x-primary-button class="ms-3">
-                {{ __('Log in') }}
-            </x-primary-button>
-        </div>
-    </form>
-</x-guest-layout>
+        <!-- CONTAINER CLOSED -->
+    </div>
+</div>
+<!-- End PAGE -->
+@endsection

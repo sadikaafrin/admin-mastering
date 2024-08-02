@@ -1,52 +1,72 @@
-<x-guest-layout>
-    <form method="POST" action="{{ route('register') }}">
-        @csrf
+@extends('auth.app')
 
-        <!-- Name -->
+@section('content')
+    <!-- PAGE -->
+    <div class="page">
         <div>
-            <x-input-label for="name" :value="__('Name')" />
-            <x-text-input id="name" class="block mt-1 w-full" type="text" name="name" :value="old('name')" required autofocus autocomplete="name" />
-            <x-input-error :messages="$errors->get('name')" class="mt-2" />
+            <!-- CONTAINER OPEN -->
+            <div class="col col-login mx-auto text-center">
+                <a href="index.html">
+                    <img src="{{asset('backend/images/brand/logo.png')}}" class="header-brand-img" alt="">
+                </a>
+            </div>
+            <div class="container-login100">
+                <div class="wrap-login100 p-0">
+                    <div class="card-body">
+                        <form class="login100-form validate-form" action="{{route('register')}}" method="post">
+                            @csrf
+									<span class="login100-form-title">
+										Registration
+									</span>
+                            <div class="wrap-input100 validate-input" >
+                                <input class="input100" type="text" name="name" placeholder="User name">
+                                <span class="focus-input100"></span>
+                                <span class="symbol-input100">
+											<i class="mdi mdi-account" aria-hidden="true"></i>
+										</span>
+                            </div>
+                            <div class="wrap-input100 validate-input" >
+                                <input class="input100" type="email" name="email" placeholder="Email">
+                                <span class="focus-input100"></span>
+                                <span class="symbol-input100">
+											<i class="zmdi zmdi-email" aria-hidden="true"></i>
+                                </span>
+                            </div>
+                            <div class="wrap-input100 validate-input" >
+                                <input class="input100" type="password" name="password" placeholder="Password">
+                                <span class="focus-input100"></span>
+                                <span class="symbol-input100">
+											<i class="zmdi zmdi-lock" aria-hidden="true"></i>
+                                </span>
+                            </div>
+                            <div class="wrap-input100 validate-input" >
+                                <input class="input100" type="password" name="password_confirmation" placeholder="Password">
+                                <span class="focus-input100"></span>
+                                <span class="symbol-input100">
+											<i class="zmdi zmdi-lock" aria-hidden="true"></i>
+                                </span>
+                            </div>
+                            <label class="custom-control custom-checkbox mt-4">
+                                <input type="checkbox" class="custom-control-input">
+                                <span class="custom-control-label">Agree the <a href="">terms and policy</a></span>
+                            </label>
+                            <div class="container-login100-form-btn">
+                                <button type="submit" class="login100-form-btn btn-primary">
+                                    Register
+                                </button>
+                            </div>
+                            <div class="text-center pt-3">
+                                <p class="text-dark mb-0">Already have account?<a href="{{route('login')}}" class="text-primary ms-1">Sign In</a></p>
+                            </div>
+                        </form>
+                    </div>
+
+                </div>
+            </div>
+            <!-- CONTAINER CLOSED -->
         </div>
+    </div>
+    <!-- END PAGE -->
+@endsection
 
-        <!-- Email Address -->
-        <div class="mt-4">
-            <x-input-label for="email" :value="__('Email')" />
-            <x-text-input id="email" class="block mt-1 w-full" type="email" name="email" :value="old('email')" required autocomplete="username" />
-            <x-input-error :messages="$errors->get('email')" class="mt-2" />
-        </div>
 
-        <!-- Password -->
-        <div class="mt-4">
-            <x-input-label for="password" :value="__('Password')" />
-
-            <x-text-input id="password" class="block mt-1 w-full"
-                            type="password"
-                            name="password"
-                            required autocomplete="new-password" />
-
-            <x-input-error :messages="$errors->get('password')" class="mt-2" />
-        </div>
-
-        <!-- Confirm Password -->
-        <div class="mt-4">
-            <x-input-label for="password_confirmation" :value="__('Confirm Password')" />
-
-            <x-text-input id="password_confirmation" class="block mt-1 w-full"
-                            type="password"
-                            name="password_confirmation" required autocomplete="new-password" />
-
-            <x-input-error :messages="$errors->get('password_confirmation')" class="mt-2" />
-        </div>
-
-        <div class="flex items-center justify-end mt-4">
-            <a class="underline text-sm text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-gray-100 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 dark:focus:ring-offset-gray-800" href="{{ route('login') }}">
-                {{ __('Already registered?') }}
-            </a>
-
-            <x-primary-button class="ms-4">
-                {{ __('Register') }}
-            </x-primary-button>
-        </div>
-    </form>
-</x-guest-layout>

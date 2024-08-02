@@ -2,7 +2,7 @@
 <html lang="en" dir="ltr">
 
 <meta http-equiv="content-type" content="text/html;charset=UTF-8" />
-
+<meta name="csrf-token" content="{{ csrf_token() }}">
 <head>
 
     <!-- META DATA -->

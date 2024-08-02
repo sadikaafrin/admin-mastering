@@ -1,3 +1,6 @@
+@php
+    $systemSetting = App\Models\SystemSetting::first();
+@endphp
 
 <!-- BOOTSTRAP CSS -->
 <link id="style" href="{{ asset('backend/plugins/bootstrap/css/bootstrap.min.css') }}" rel="stylesheet" />
@@ -18,8 +21,10 @@
 {{-- toaster css --}}
 <link href="{{ asset('backend/css/toastr.css') }}" rel="stylesheet" />
 
-
 <link rel="stylesheet" href="{{ asset('backend/css/dropify.min.css') }}">
 
 <!-- FAVICON -->
-<link rel="shortcut icon" type="image/x-icon" href="{{ asset('backend/images/brand/favicon.ico') }}" />
+<link rel="shortcut icon" type="image/x-icon"
+      href="{{ isset($systemSetting->favicon) && !empty($systemSetting->favicon) ? asset($systemSetting->favicon) : asset('backend/images/brand/favicon.ico') }}" />
+
+@stack('css')
