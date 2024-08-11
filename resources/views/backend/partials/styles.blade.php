@@ -21,6 +21,7 @@
 {{-- toaster css --}}
 <link href="{{ asset('backend/css/toastr.css') }}" rel="stylesheet" />
 
+{{-- dropify css --}}
 <link rel="stylesheet" href="{{ asset('backend/css/dropify.min.css') }}">
 
 <!-- FAVICON -->

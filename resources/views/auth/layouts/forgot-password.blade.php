@@ -3,14 +3,7 @@
 @section('content')
 
 <!-- PAGE -->
-<div class="page">
-    <div>
         <!-- CONTAINER OPEN -->
-        <div class="col mx-auto text-center">
-            <a href="index.html">
-                <img src="{{asset('backend/images/brand/logo.png')}}" class="header-brand-img" alt="">
-            </a>
-        </div>
         <div class="col-12 container-login100">
             <div class="row">
                 <div class="col col-login mx-auto">
@@ -43,8 +36,6 @@
             </div>
         </div>
         <!-- CONTAINER CLOSED -->
-    </div>
-</div>
-<!--END PAGE -->
+
 
 @endsection

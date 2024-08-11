@@ -2,14 +2,7 @@
 
 @section('content')
     <!-- PAGE -->
-    <div class="page">
-        <div>
             <!-- CONTAINER OPEN -->
-            <div class="col col-login mx-auto text-center">
-                <a href="index.html">
-                    <img src="{{asset('backend/images/brand/logo.png')}}" class="header-brand-img" alt="">
-                </a>
-            </div>
             <div class="container-login100">
                 <div class="wrap-login100 p-0">
                     <div class="card-body">
@@ -64,9 +57,7 @@
                 </div>
             </div>
             <!-- CONTAINER CLOSED -->
-        </div>
-    </div>
-    <!-- END PAGE -->
+
 @endsection
 
 

@@ -1,10 +1,7 @@
-       <footer class="footer">
-           <div class="container">
-               <div class="row align-items-center flex-row-reverse">
-                   <div class="col-md-12 col-sm-12 text-center">
-                       Copyright © 2022 <a href="#">Noa</a>. Designed with <span
-                           class="fa fa-heart text-danger"></span> by <a href="#"> Spruko </a> All rights reserved
-                   </div>
-               </div>
-           </div>
-       </footer>
+<div class="card-footer">
+    <div class="d-flex justify-content-center my-3">
+        <a href="javascript:void(0)" class="social-login text-center">
+            <i class="fa fa-apple"></i>
+        </a>
+    </div>
+</div>
