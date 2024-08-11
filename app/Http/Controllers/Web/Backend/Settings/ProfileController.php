@@ -9,13 +9,15 @@ use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 use App\Models\User;
 use Exception;
+use App\Helpers\Helper;
+use App\Http\Requests\Auth\RegisterRequest;
 
 class ProfileController extends Controller
 {
-
-    public function index()
+    public function index(Request $request)
     {
-        return view('backend.layouts.settings.profile_settings');
+        $user=User::find($request->id);
+        return view('backend.layouts.settings.profile_settings',compact('user'));
     }
 
     public function UpdateProfile(Request $request) {
@@ -69,24 +71,43 @@ class ProfileController extends Controller
         }
     }
 
+
     public function UpdateProfilePicture(Request $request)
-    {
-        $request->validate([
-            'profile_picture' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048',
-        ]);
+{
+    $request->validate([
+        'profile_picture' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048',
+    ]);
 
-        try {
-            $user = Auth::user();
-            $image = $request->file('profile_picture');
-            $imageName = time().'.'.$image->extension();
-            $image->move(public_path('images/profile'), $imageName);
+    try {
+        $user = Auth::user();
+        $image = $request->file('profile_picture');
+        $imageName = time() . '.' . $image->getClientOriginalExtension();
 
-            $user->avatar = 'images/profile/'.$imageName;
-            $user->save();
-
-            return response()->json(['success' => true, 'image_url' => asset('images/profile/'.$imageName)]);
-        } catch (Exception $e) {
-            return response()->json(['success' => false, 'message' => $e->getMessage()]);
+        // Check if there's an existing profile picture
+        if ($user->avatar && file_exists(public_path($user->avatar))) {
+            Helper::fileDelete(public_path($user->avatar));
         }
+
+        // Use the Helper class to handle the file upload
+        $imagePath = Helper::fileUpload($image, 'profile', $imageName);
+
+        if ($imagePath === null) {
+            throw new Exception('Failed to upload image.');
+        }
+
+        // Update user's avatar with the new image path
+        $user->avatar = $imagePath;
+        $user->save();
+
+        return response()->json([
+            'success' => true,
+            'image_url' => asset($imagePath)
+        ]);
+    } catch (Exception $e) {
+        return response()->json([
+            'success' => false,
+            'message' => $e->getMessage()
+        ]);
     }
+}
 }

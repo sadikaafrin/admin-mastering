@@ -10,107 +10,98 @@
         <div class="main-container container-fluid">
 
 
-            <!-- PAGE-HEADER -->
-            <div class="page-header">
+             <!-- PAGE-HEADER -->
+             <div class="page-header">
                 <div>
-                    <h1 class="page-title">Profile</h1>
+                    <h1 class="page-title">Dynamic Page Form</h1>
                 </div>
                 <div class="ms-auto pageheader-btn">
                     <ol class="breadcrumb">
-                        <li class="breadcrumb-item"><a href="javascript:void(0);">Pages</a></li>
-                        <li class="breadcrumb-item active" aria-current="page">Profile</li>
+                        <li class="breadcrumb-item"><a href="javascript:void(0);">Settings</a></li>
+                        <li class="breadcrumb-item active" aria-current="page">Dynamic Page Form</li>
                     </ol>
                 </div>
             </div>
-            <!-- PAGE-HEADER END -->
+        <!-- PAGE-HEADER END -->
 
-            <!-- ROW-1 OPEN -->
-            <div class="row" id="user-profile">
-                <div class="col-lg-12">
-                    <div class="card">
-                        <div class="card-body">
-                            <div class="row align-items-center">
-                                <div class="col-lg-12 col-md-12 col-xl-6">
-                                    <div class="d-flex flex-wrap align-items-center">
-                                        {{-- <div class="profile-img-main rounded">
-                                            <img src="{{ asset('backend/images/faces/6.jpg') }}" alt="img" class="m-0 p-1 rounded hrem-6">
-                                        </div> --}}
-
-                                        <div class="profile-image">
-                                            <div class="profile-img-main rounded">
-                                                <img id="profile-picture" src="{{ Auth::user()->avatar ? asset(Auth::user()->avatar) : asset('backend/images/faces/6.jpg') }}" alt="Profile Picture" class="m-0 p-1 rounded hrem-6" style="width: 150px; height: 150px; border-radius: 50%;">
-                                            </div>
-                                            <div class="update-image">
-                                                <input type="file" name="profile_picture" id="profile_picture_input" style="display: none;">
-                                                <label for="profile_picture_input">
-                                                    <i class="fa fa-cloud-upload" aria-hidden="true"></i>
-                                                </label>
-                                            </div>
-                                        </div>
-
-
-                                        <div class="ms-4">
-                                            <h4>{{ Auth::user()->name }}</h4>
-                                            <h4>{{ Auth::user()->email }}</h4>
-                                        </div>
+        <!-- ROW-1 OPEN -->
+        <div class="row" id="user-profile">
+            <div class="col-lg-12">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="row align-items-center">
+                            <div class="col-lg-12 col-md-12 col-xl-6">
+                                <div class="d-flex flex-wrap align-items-center">
+                                    <div class="profile-img-main rounded">
+                                        <img src="{{ Auth::user()->avatar ? asset(Auth::user()->avatar) : asset('backend/images/faces/6.jpg') }}" alt="img" class="m-0 p-1 rounded hrem-6">
+                                    </div>
+                                    <div class="ms-4">
+                                        <h4>{{Auth::user()->name}}</h4>
+                                         <h4>{{ Auth::user()->email}}</h4>
+                                        <!-- Follow Button -->
+                                        <a href="#" class="btn btn-primary btn-sm" id="uploadImageBtn"><i class="fa fa-rss"></i>Update Profile</a>
+                                        <!-- Hidden File Input -->
+                                        <input type="file" name="profile_picture" id="profile_picture_input" style="display: none;">
                                     </div>
                                 </div>
-
                             </div>
+
+
                         </div>
-                        <div class="border-top">
-                            <div class="wideget-user-tab">
-                                <div class="tab-menu-heading">
-                                    <div class="tabs-menu1">
-                                        <ul class="nav">
-                                            <li><a href="#editProfile"  class="active show" data-bs-toggle="tab">Edit Profile</a></li>
-                                            <li><a href="#updatePassword" data-bs-toggle="tab">Update Password</a></li>
-                                        </ul>
-                                    </div>
+                    </div>
+                    <div class="border-top">
+                        <div class="wideget-user-tab">
+                            <div class="tab-menu-heading">
+                                <div class="tabs-menu1">
+                                    <ul class="nav">
+                                        <li><a href="#editProfile"  class="active show" data-bs-toggle="tab">Edit Profile</a></li>
+                                        <li><a href="#updatePassword" data-bs-toggle="tab">Update Password</a></li>
+                                    </ul>
                                 </div>
                             </div>
                         </div>
                     </div>
-                    <div class="tab-content">
+                </div>
+                <div class="tab-content">
 
-                        <div class="tab-pane active show" id="editProfile">
-                            <div class="card">
-                                <div class="card-body border-0">
-                                    <form class="form-horizontal" method="post" action="{{ route('update.profile') }}">
-                                        @csrf
-                                        <div class="row mb-4">
-                                            <p class="mb-4 text-17">Personal Info</p>
-                                            <div class="form-group">
-                                                <label for="username" class="form-label">User Name</label>
-                                                <input type="text" class="form-control @error('name') is-invalid @enderror" name="name" placeholder="Name" id="username" value="{{ Auth::user()->name }}">
-                                                @error('name')
-                                                    <span class="text-danger">{{ $message }}</span>
-                                                @enderror
-                                            </div>
-                                            <div class="form-group">
-                                                <label for="firstname" class="form-label">Email</label>
-                                                <input type="email" class="form-control @error('email') is-invalid @enderror" name="email" id="firstname" placeholder="Email" value="{{ Auth::user()->email }}">
-                                                @error('email')
-                                                    <span class="text-danger">{{ $message }}</span>
-                                                @enderror
-                                            </div>
-                                            <div class="form-group">
-                                                <button class="btn btn-primary" type="submit">Submit</button>
-                                            </div>
+                    <div class="tab-pane active show" id="editProfile">
+                        <div class="card">
+                            <div class="card-body border-0">
+                                <form class="form-horizontal" method="post" action="{{ route('update.profile') }}">
+                                    @csrf
+                                    <div class="row mb-4">
+                                        <p class="mb-4 text-17">Personal Info</p>
+                                        <div class="form-group">
+                                            <label for="username" class="form-label">User Name</label>
+                                            <input type="text" class="form-control @error('name') is-invalid @enderror" name="name" placeholder="Name" id="username" value="{{ Auth::user()->name }}">
+                                            @error('name')
+                                                <span class="text-danger">{{ $message }}</span>
+                                            @enderror
                                         </div>
-                                    </form>
+                                        <div class="form-group">
+                                            <label for="firstname" class="form-label">Email</label>
+                                            <input type="email" class="form-control @error('email') is-invalid @enderror" name="email" id="firstname" placeholder="Email" value="{{ Auth::user()->email }}">
+                                            @error('email')
+                                                <span class="text-danger">{{ $message }}</span>
+                                            @enderror
+                                        </div>
+                                        <div class="form-group">
+                                            <button class="btn btn-primary" type="submit">Submit</button>
+                                        </div>
+                                    </div>
+                                </form>
 
 
 
-                                </div>
                             </div>
                         </div>
+                    </div>
 
-                        <div class="tab-pane" id="updatePassword">
-                            <div class="card">
-                                <div class="card-body border-0">
-                                    <form class="form-horizontal" method="post" action="{{ route('update.Password') }}">
-                                        @csrf
+                    <div class="tab-pane" id="updatePassword">
+                        <div class="card">
+                            <div class="card-body border-0">
+                                <form class="form-horizontal" method="post" action="{{ route('update.Password') }}">
+                                    @csrf
                                         <div class="row mb-4">
                                             <!-- Current Password -->
                                             <div class="form-group">
@@ -145,18 +136,18 @@
                                                 <a href="{{ route('dashboard') }}" class="btn btn-danger me-2">Cancel</a>
                                             </div>
                                         </div>
-                                    </form>
-                                </div>
+                                </form>
                             </div>
                         </div>
-
-
-
-
                     </div>
-                </div><!-- COL-END -->
-            </div>
-            <!-- ROW-1 CLOSED -->
+
+
+
+
+                </div>
+            </div><!-- COL-END -->
+        </div>
+        <!-- ROW-1 CLOSED -->
 
 
         </div>
@@ -167,9 +158,15 @@
 
 
 @push('script')
-<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script>
     $(document).ready(function() {
+        // Handle Image button click to trigger file input
+        $('#uploadImageBtn').click(function(e) {
+            e.preventDefault();
+            $('#profile_picture_input').click();
+        });
+
+        // Handle file input change to upload the selected image
         $('#profile_picture_input').change(function() {
             var formData = new FormData();
             formData.append('profile_picture', $(this)[0].files[0]);
@@ -183,17 +180,31 @@
                 contentType: false,
                 success: function(response) {
                     if (response.success) {
-                        $('#profile-picture').attr('src', response.image_url);
-                        toastr.success('Profile picture updated successfully.');
-                    } else {
-                        toastr.error(response.message);
-                    }
-                },
-                error: function() {
-                    toastr.error('An error occurred while updating the profile picture.');
+                    // Update the profile picture src in the profile settings page
+                    $('.profile-img-main img').attr('src', response.image_url);
+
+                    // Also update the profile picture in the header view page
+                    $('.profile-img-change').attr('src', response.image_url);
+
+                    toastr.success('Profile picture updated successfully.');
+                } else {
+                    toastr.error(response.message);
                 }
+                    },
+                    error: function() {
+                            toastr.error('An error occurred while updating the profile picture.');
+                    }
             });
         });
+
+        // Preview image before upload
+        $('#profile_picture_input').change(function() {
+            var reader = new FileReader();
+            reader.onload = function(e) {
+                $('.profile-img-main img').attr('src', e.target.result);
+            };
+            reader.readAsDataURL(this.files[0]);
+        });
     });
-</script>
+    </script>
 @endpush
